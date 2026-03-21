@@ -32,9 +32,9 @@ Web開発や生活の中で用途がありそうなツールをWebサービス�
 
 ## バックエンド
 
-- PHP 7.3
-- Laravel 6
-- MySQL 5.7
+- PHP 8.2
+- Laravel 8
+- MySQL 8.0
 
 ## ミドルウェア
 
@@ -51,8 +51,9 @@ Web開発や生活の中で用途がありそうなツールをWebサービス�
 docker(docker-compose)
 
 ## 本番環境
+~~Webarena VPSクラウド~~
 
-Webarena VPSクラウド
+なし
 
 # 環境構築
 
