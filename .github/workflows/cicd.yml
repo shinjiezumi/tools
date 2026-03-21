@@ -34,7 +34,7 @@ jobs:
       # checkout
       - name: Setup file system permissions
         run: chmod -R 777 $GITHUB_WORKSPACE /github /__w/_temp
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       # os package install
       - name: install packages
@@ -80,14 +80,14 @@ jobs:
 
       # php/node modules install
       - name: Cache php modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         env:
           cache-name: cache-php-modules
         with:
           path: ./src/vendor
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./src/composer.lock') }}
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -114,7 +114,7 @@ jobs:
     if: false # 停止
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
