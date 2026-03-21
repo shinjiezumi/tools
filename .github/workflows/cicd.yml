@@ -10,7 +10,7 @@ jobs:
   build-and-test:
 
     runs-on: ubuntu-latest
-    container: php:7.3-fpm
+    container: php:8.2-fpm
 
     env:
       APP_ENV: testing
@@ -23,7 +23,7 @@ jobs:
 
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:8.0
         env:
           MYSQL_DATABASE: tools
           MYSQL_ROOT_PASSWORD: pass
@@ -34,7 +34,7 @@ jobs:
       # checkout
       - name: Setup file system permissions
         run: chmod -R 777 $GITHUB_WORKSPACE /github /__w/_temp
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       # os package install
       - name: install packages
@@ -80,14 +80,14 @@ jobs:
 
       # php/node modules install
       - name: Cache php modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         env:
           cache-name: cache-php-modules
         with:
           path: ./src/vendor
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./src/composer.lock') }}
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -110,10 +110,11 @@ jobs:
     name: deploy
     runs-on: ubuntu-latest
     needs: build-and-test
-    if: github.ref == 'refs/heads/master'
+#    if: github.ref == 'refs/heads/master'
+    if: false # 停止
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
